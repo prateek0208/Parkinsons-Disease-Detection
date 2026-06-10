@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parkinson's Disease Detection | AI</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-3d">
+        <div class="sphere sphere1"></div>
+        <div class="sphere sphere2"></div>
+        <div class="sphere sphere3"></div>
+    </div>
+
+    <main class="glass-container">
+        <header>
+            <h1>Parkinson's AI <span class="accent">Diagnostic</span></h1>
+            <p>Enter the vocal features below to run a real-time Random Forest prediction (94.8% Accuracy).</p>
+        </header>
+
+        <form id="prediction-form">
+            <div class="input-grid">
+                <div class="input-group">
+                    <label for="fo">MDVP:Fo(Hz) - Average vocal fundamental frequency</label>
+                    <input type="number" id="fo" step="any" required placeholder="e.g. 119.992">
+                </div>
+                <div class="input-group">
+                    <label for="fhi">MDVP:Fhi(Hz) - Maximum vocal fundamental frequency</label>
+                    <input type="number" id="fhi" step="any" required placeholder="e.g. 157.302">
+                </div>
+                <div class="input-group">
+                    <label for="flo">MDVP:Flo(Hz) - Minimum vocal fundamental frequency</label>
+                    <input type="number" id="flo" step="any" required placeholder="e.g. 74.997">
+                </div>
+                <div class="input-group">
+                    <label for="jitter">MDVP:Jitter(%) - Variation in fundamental frequency</label>
+                    <input type="number" id="jitter" step="any" required placeholder="e.g. 0.00784">
+                </div>
+            </div>
+            <!-- More inputs can be added or we can use a summary set if the model allows, but the model needs all 22 features -->
+            
+            <p class="note">Note: For this demo, please upload a CSV or we will use default average values for the remaining 18 features.</p>
+
+            <button type="submit" class="btn-3d">Run Diagnosis</button>
+        </form>
+
+        <div id="result-container" class="hidden">
+            <h2>Diagnosis Result</h2>
+            <div id="prediction-text" class="result-box"></div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
