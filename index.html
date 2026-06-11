@@ -3,53 +3,208 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parkinson's Disease Detection | AI</title>
+    <title>Parkinson's Disease Detection | AI Diagnostic</title>
+    <meta name="description" content="AI-powered Parkinson's Disease detection using Random Forest ML model with 94.87% accuracy. Enter vocal biomarkers for instant diagnosis.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="background-3d">
-        <div class="sphere sphere1"></div>
-        <div class="sphere sphere2"></div>
-        <div class="sphere sphere3"></div>
+
+    <!-- Animated 3D Background -->
+    <div class="bg-3d">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+        <div class="orb orb-4"></div>
+        <div class="grid-floor"></div>
     </div>
 
-    <main class="glass-container">
-        <header>
-            <h1>Parkinson's AI <span class="accent">Diagnostic</span></h1>
-            <p>Enter the vocal features below to run a real-time Random Forest prediction (94.8% Accuracy).</p>
+    <!-- Floating Particles -->
+    <div class="particles" id="particles"></div>
+
+    <main class="app">
+        <!-- Hero Header -->
+        <header class="header">
+            <div class="logo">
+                <div class="logo-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                    </svg>
+                </div>
+                <span>NeuroScan <span class="accent">AI</span></span>
+            </div>
+            <div class="badge">Random Forest | 94.87% Accuracy</div>
         </header>
 
-        <form id="prediction-form">
-            <div class="input-grid">
-                <div class="input-group">
-                    <label for="fo">MDVP:Fo(Hz) - Average vocal fundamental frequency</label>
-                    <input type="number" id="fo" step="any" required placeholder="e.g. 119.992">
+        <!-- Main Card -->
+        <section class="glass-card" id="mainCard">
+            <div class="card-glow"></div>
+
+            <h1 class="title">Parkinson's Disease <span class="accent">Detection</span></h1>
+            <p class="subtitle">Enter biomedical voice measurements for an instant AI-powered diagnostic prediction.</p>
+
+            <form id="predictionForm">
+                <div class="form-grid">
+                    <div class="input-block">
+                        <label for="fo">MDVP:Fo(Hz)</label>
+                        <p class="input-desc">Average vocal fundamental frequency</p>
+                        <input type="number" id="fo" step="any" required placeholder="e.g. 119.992">
+                    </div>
+                    <div class="input-block">
+                        <label for="fhi">MDVP:Fhi(Hz)</label>
+                        <p class="input-desc">Maximum vocal fundamental frequency</p>
+                        <input type="number" id="fhi" step="any" required placeholder="e.g. 157.302">
+                    </div>
+                    <div class="input-block">
+                        <label for="flo">MDVP:Flo(Hz)</label>
+                        <p class="input-desc">Minimum vocal fundamental frequency</p>
+                        <input type="number" id="flo" step="any" required placeholder="e.g. 74.997">
+                    </div>
+                    <div class="input-block">
+                        <label for="jitter">MDVP:Jitter(%)</label>
+                        <p class="input-desc">Variation in fundamental frequency</p>
+                        <input type="number" id="jitter" step="any" required placeholder="e.g. 0.00784">
+                    </div>
+                    <div class="input-block">
+                        <label for="jitter_abs">MDVP:Jitter(Abs)</label>
+                        <p class="input-desc">Absolute jitter in microseconds</p>
+                        <input type="number" id="jitter_abs" step="any" required placeholder="e.g. 0.00007">
+                    </div>
+                    <div class="input-block">
+                        <label for="rap">MDVP:RAP</label>
+                        <p class="input-desc">Relative amplitude perturbation</p>
+                        <input type="number" id="rap" step="any" required placeholder="e.g. 0.00370">
+                    </div>
+                    <div class="input-block">
+                        <label for="ppq">MDVP:PPQ</label>
+                        <p class="input-desc">Five-point period perturbation</p>
+                        <input type="number" id="ppq" step="any" required placeholder="e.g. 0.00554">
+                    </div>
+                    <div class="input-block">
+                        <label for="ddp">Jitter:DDP</label>
+                        <p class="input-desc">Average absolute difference of differences</p>
+                        <input type="number" id="ddp" step="any" required placeholder="e.g. 0.01109">
+                    </div>
+                    <div class="input-block">
+                        <label for="shimmer">MDVP:Shimmer</label>
+                        <p class="input-desc">Variation in amplitude</p>
+                        <input type="number" id="shimmer" step="any" required placeholder="e.g. 0.04374">
+                    </div>
+                    <div class="input-block">
+                        <label for="shimmer_db">MDVP:Shimmer(dB)</label>
+                        <p class="input-desc">Shimmer in decibels</p>
+                        <input type="number" id="shimmer_db" step="any" required placeholder="e.g. 0.426">
+                    </div>
+                    <div class="input-block">
+                        <label for="apq3">Shimmer:APQ3</label>
+                        <p class="input-desc">Three-point amplitude perturbation</p>
+                        <input type="number" id="apq3" step="any" required placeholder="e.g. 0.02182">
+                    </div>
+                    <div class="input-block">
+                        <label for="apq5">Shimmer:APQ5</label>
+                        <p class="input-desc">Five-point amplitude perturbation</p>
+                        <input type="number" id="apq5" step="any" required placeholder="e.g. 0.03130">
+                    </div>
+                    <div class="input-block">
+                        <label for="apq">MDVP:APQ</label>
+                        <p class="input-desc">11-point amplitude perturbation</p>
+                        <input type="number" id="apq" step="any" required placeholder="e.g. 0.02971">
+                    </div>
+                    <div class="input-block">
+                        <label for="dda">Shimmer:DDA</label>
+                        <p class="input-desc">Average abs. diff. of consecutive differences</p>
+                        <input type="number" id="dda" step="any" required placeholder="e.g. 0.06545">
+                    </div>
+                    <div class="input-block">
+                        <label for="nhr">NHR</label>
+                        <p class="input-desc">Noise-to-harmonics ratio</p>
+                        <input type="number" id="nhr" step="any" required placeholder="e.g. 0.02211">
+                    </div>
+                    <div class="input-block">
+                        <label for="hnr">HNR</label>
+                        <p class="input-desc">Harmonics-to-noise ratio</p>
+                        <input type="number" id="hnr" step="any" required placeholder="e.g. 21.033">
+                    </div>
+                    <div class="input-block">
+                        <label for="rpde">RPDE</label>
+                        <p class="input-desc">Recurrence period density entropy</p>
+                        <input type="number" id="rpde" step="any" required placeholder="e.g. 0.41478">
+                    </div>
+                    <div class="input-block">
+                        <label for="dfa">DFA</label>
+                        <p class="input-desc">Detrended fluctuation analysis</p>
+                        <input type="number" id="dfa" step="any" required placeholder="e.g. 0.81528">
+                    </div>
+                    <div class="input-block">
+                        <label for="spread1">spread1</label>
+                        <p class="input-desc">Nonlinear fundamental frequency variation</p>
+                        <input type="number" id="spread1" step="any" required placeholder="e.g. -4.81303">
+                    </div>
+                    <div class="input-block">
+                        <label for="spread2">spread2</label>
+                        <p class="input-desc">Nonlinear fundamental frequency variation</p>
+                        <input type="number" id="spread2" step="any" required placeholder="e.g. 0.26648">
+                    </div>
+                    <div class="input-block">
+                        <label for="d2">D2</label>
+                        <p class="input-desc">Correlation dimension</p>
+                        <input type="number" id="d2" step="any" required placeholder="e.g. 2.30144">
+                    </div>
+                    <div class="input-block">
+                        <label for="ppe">PPE</label>
+                        <p class="input-desc">Pitch period entropy</p>
+                        <input type="number" id="ppe" step="any" required placeholder="e.g. 0.28465">
+                    </div>
                 </div>
-                <div class="input-group">
-                    <label for="fhi">MDVP:Fhi(Hz) - Maximum vocal fundamental frequency</label>
-                    <input type="number" id="fhi" step="any" required placeholder="e.g. 157.302">
+
+                <!-- Quick Fill Buttons -->
+                <div class="quick-fill">
+                    <button type="button" class="fill-btn fill-healthy" onclick="fillHealthy()">Fill Healthy Sample</button>
+                    <button type="button" class="fill-btn fill-parkinson" onclick="fillParkinson()">Fill Parkinson's Sample</button>
                 </div>
-                <div class="input-group">
-                    <label for="flo">MDVP:Flo(Hz) - Minimum vocal fundamental frequency</label>
-                    <input type="number" id="flo" step="any" required placeholder="e.g. 74.997">
+
+                <button type="submit" class="btn-diagnose" id="submitBtn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                    Run AI Diagnosis
+                </button>
+            </form>
+
+            <!-- Result Section -->
+            <div id="resultSection" class="result-section hidden">
+                <div id="resultCard" class="result-card">
+                    <div class="result-icon" id="resultIcon"></div>
+                    <h2 id="resultTitle"></h2>
+                    <p id="resultDesc"></p>
+                    <div class="confidence-bar">
+                        <div class="confidence-label">Confidence</div>
+                        <div class="bar-track">
+                            <div class="bar-fill" id="confidenceBar"></div>
+                        </div>
+                        <div class="confidence-value" id="confidenceValue"></div>
+                    </div>
                 </div>
-                <div class="input-group">
-                    <label for="jitter">MDVP:Jitter(%) - Variation in fundamental frequency</label>
-                    <input type="number" id="jitter" step="any" required placeholder="e.g. 0.00784">
+
+                <!-- SHAP Feature Importance Chart -->
+                <div class="shap-section">
+                    <h3 class="shap-title">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
+                        Explainable AI - Feature Importance
+                    </h3>
+                    <p class="shap-subtitle">Which vocal features influenced this prediction the most?</p>
+                    <div id="shapChart" class="shap-chart"></div>
                 </div>
+
+                <!-- Download Report Button -->
+                <button class="btn-download" id="downloadBtn" onclick="downloadReport()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    Download Diagnostic Report (PDF)
+                </button>
             </div>
-            <!-- More inputs can be added or we can use a summary set if the model allows, but the model needs all 22 features -->
-            
-            <p class="note">Note: For this demo, please upload a CSV or we will use default average values for the remaining 18 features.</p>
+        </section>
 
-            <button type="submit" class="btn-3d">Run Diagnosis</button>
-        </form>
-
-        <div id="result-container" class="hidden">
-            <h2>Diagnosis Result</h2>
-            <div id="prediction-text" class="result-box"></div>
-        </div>
+        <footer>
+            <p>Built by <strong>Prateek Ranjan</strong> | Random Forest ML Model | 94.87% Accuracy</p>
+        </footer>
     </main>
 
     <script src="script.js"></script>
