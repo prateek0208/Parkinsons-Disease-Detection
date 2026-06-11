@@ -1,0 +1,6 @@
+# Exclude Jupyter Notebooks from GitHub language statistics
+# so that Python, JS, CSS, HTML show up properly
+*.ipynb linguist-documentation
+
+# Exclude generated/exported files from language stats
+model.json linguist-generated
